@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +12,7 @@ namespace Baitap01
 {
     public partial class QLHD : Form
     {
-        string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -20,7 +20,7 @@ namespace Baitap01
         private void LoadData()
         {
             sqlcon = new SqlConnection(strcon);
-            string sql = "SELECT * FROM QLHD";
+            string sql = "select MaHoaDonBan as MaHD, MaKhachHang as MaKH, '2026-05-28' as NgayLap, TongTienBan as ThanhTien from HoaDonBan";
             SqlDataAdapter adapt = new SqlDataAdapter(sql, sqlcon);  
             DataSet ds = new DataSet();                 
             adapt.Fill(ds);                          
@@ -38,7 +38,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select count(*) from QLHD";
+            cmd.CommandText = "select count(*) from HoaDonBan";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -50,7 +50,7 @@ namespace Baitap01
         {
             laymahd ="HD"+ taomahd();
             sqlcon.Open();
-            string qr = "insert into QLHD(MaHD) values('" + laymahd + "')";
+            string qr = "insert into HoaDonBan(MaHoaDonBan, TrangThai, TongTienBan, MaNhanVien, MaKhachHang, MaKhuyenMai, MaBan) values ('" + laymahd + "', N'Chưa thanh toán', 0, 'NV01', 'KH01', 'KM00', 'B01')";
             cmd = new SqlCommand(qr, sqlcon);
             cmd.ExecuteNonQuery();
             LoadData();
@@ -86,7 +86,7 @@ namespace Baitap01
         private void btntim_Click(object sender, EventArgs e)
         {
             sqlcon = new SqlConnection(strcon);
-            string sql = "SELECT * FROM QLHD WHERE MAHD='"+txttim.Text+"' OR MAKH='"+txttim.Text+"'";
+            string sql = "select MaHoaDonBan as MaHD, MaKhachHang as MaKH, '2026-05-28' as NgayLap, TongTienBan as ThanhTien from HoaDonBan where MaHoaDonBan='"+txttim.Text+"' or MaKhachHang='"+txttim.Text+"'";
             SqlDataAdapter adapt = new SqlDataAdapter(sql, sqlcon);
             DataSet ds = new DataSet();
             adapt.Fill(ds);

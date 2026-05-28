@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,10 +22,9 @@ namespace Baitap01
         {
 
             SqlConnection conn = new SqlConnection
-         (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+         (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
-            string sql = "SELECT *"
-                            + "FROM QLCV";
+            string sql = "SELECT MaChucVu AS MaCV, TenChucVu AS TenCV, 1.0 AS HSL FROM ChucVu";
 
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);  // adapter : chuyển đổi
             DataSet ds = new DataSet();                 // bộ
@@ -36,12 +35,10 @@ namespace Baitap01
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
 
-            string sql = ("SELECT * "
-                           + "FROM QLCV" + " WHERE TenCV  LIKE '%"
-                       + textBox4.Text + "%'");
+            string sql = ("SELECT MaChucVu AS MaCV, TenChucVu AS TenCV, 1.0 AS HSL FROM ChucVu WHERE TenChucVu LIKE '%" + textBox4.Text + "%'");
 
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
@@ -74,22 +71,11 @@ namespace Baitap01
         private void button1_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-   (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand(" insert into QLCV (MaCV, TenCV,HSL) values ( @mcv,@ten,@hsl)", conn);
+   (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand(" insert into ChucVu (MaChucVu, TenChucVu) values ( @mcv, @ten)", conn);
             conn.Open();
             cmd.Parameters.AddWithValue("@mcv", textBox1.Text);
             cmd.Parameters.AddWithValue("@ten", textBox2.Text);
-
-
-            cmd.Parameters.AddWithValue("@hsl", textBox3.Text);
-        
-
-
-
-
-
-
-
             cmd.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("thêm  thành công");
@@ -99,26 +85,12 @@ namespace Baitap01
         private void button2_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
- (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+ (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
             conn.Open();
-            SqlCommand cmd = new SqlCommand(" UPDATE QLCV set TenCV=@ten, HSL=@hsl WHERE  MaCV=@mcv", conn);
-
-
-          
+            SqlCommand cmd = new SqlCommand(" UPDATE ChucVu set TenChucVu=@ten WHERE MaChucVu=@mcv", conn);
             cmd.Parameters.AddWithValue("@ten", textBox2.Text);
-            cmd.Parameters.AddWithValue("@hsl", textBox3.Text);
-         
-
-
-
-
             cmd.Parameters.AddWithValue("@mcv", textBox1.Text);
-
-
-
-
-
             cmd.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("đã sửa thành công");
@@ -129,11 +101,11 @@ namespace Baitap01
         private void button3_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-  (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+  (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
 
 
-            SqlCommand cmd = new SqlCommand("DELETE FROM QLCV WHERE MaCV=@manv", conn);
+            SqlCommand cmd = new SqlCommand("DELETE FROM ChucVu WHERE MaChucVu=@manv", conn);
             conn.Open();
             cmd.Parameters.AddWithValue("@manv", textBox1.Text);
             cmd.ExecuteNonQuery();

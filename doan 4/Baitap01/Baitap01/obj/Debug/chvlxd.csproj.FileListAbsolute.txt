@@ -1,55 +1,57 @@
-D:\hoctap\doan.net\Baitap01\Baitap01\bin\Debug\Baitap01.exe.config
-D:\hoctap\doan.net\Baitap01\Baitap01\bin\Debug\Baitap01.exe
-D:\hoctap\doan.net\Baitap01\Baitap01\bin\Debug\Baitap01.pdb
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.hethong.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.Login.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.Properties.Resources.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\chvlxd.csproj.GenerateResource.cache
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\chvlxd.csproj.CoreCompileInputs.cache
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.exe
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.pdb
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.LapHD.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QLHD.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QLTK.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.DoiMK.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.ChamCong.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QLLSP.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QLNCC.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QLSP.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.ChucVu.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QLNhanVien.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QuanLyKH.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.ChiTietPN.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.QLPhieuNhap.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.ChiTietCC.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.TinhLuong.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.CTHD.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\Baitap01.ThongKe.resources
-D:\hoctap\doan.net\Baitap01\Baitap01\obj\Debug\chvlxd.csproj.AssemblyReference.cache
-D:\doan 4\Baitap01\Baitap01\bin\Debug\Baitap01.exe.config
-D:\doan 4\Baitap01\Baitap01\bin\Debug\Baitap01.exe
-D:\doan 4\Baitap01\Baitap01\bin\Debug\Baitap01.pdb
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.ChamCong.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.ChiTietCC.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.ChiTietPN.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.ChucVu.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.CTHD.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.DoiMK.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.hethong.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.LapHD.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.Login.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QLLSP.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QLNCC.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QLNhanVien.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QLPhieuNhap.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QLSP.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QLTK.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.Properties.Resources.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QLHD.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.QuanLyKH.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.ThongKe.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.TinhLuong.resources
-D:\doan 4\Baitap01\Baitap01\obj\Debug\chvlxd.csproj.GenerateResource.cache
-D:\doan 4\Baitap01\Baitap01\obj\Debug\chvlxd.csproj.CoreCompileInputs.cache
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.exe
-D:\doan 4\Baitap01\Baitap01\obj\Debug\Baitap01.pdb
+D:/hoctap/doan.net/Baitap01/Baitap01/bin/Debug/Baitap01.exe.config
+D:/hoctap/doan.net/Baitap01/Baitap01/bin/Debug/Baitap01.exe
+D:/hoctap/doan.net/Baitap01/Baitap01/bin/Debug/Baitap01.pdb
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.hethong.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.Login.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.Properties.Resources.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/chvlxd.csproj.GenerateResource.cache
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/chvlxd.csproj.CoreCompileInputs.cache
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.exe
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.pdb
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.LapHD.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QLHD.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QLTK.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.DoiMK.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.ChamCong.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QLLSP.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QLNCC.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QLSP.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.ChucVu.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QLNhanVien.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QuanLyKH.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.ChiTietPN.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.QLPhieuNhap.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.ChiTietCC.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.TinhLuong.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.CTHD.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/Baitap01.ThongKe.resources
+D:/hoctap/doan.net/Baitap01/Baitap01/obj/Debug/chvlxd.csproj.AssemblyReference.cache
+D:/doan 4/Baitap01/Baitap01/bin/Debug/Baitap01.exe.config
+D:/doan 4/Baitap01/Baitap01/bin/Debug/Baitap01.exe
+D:/doan 4/Baitap01/Baitap01/bin/Debug/Baitap01.pdb
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.ChamCong.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.ChiTietCC.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.ChiTietPN.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.ChucVu.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.CTHD.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.DoiMK.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.hethong.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.LapHD.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.Login.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QLLSP.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QLNCC.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QLNhanVien.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QLPhieuNhap.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QLSP.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QLTK.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.Properties.Resources.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QLHD.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.QuanLyKH.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.ThongKe.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.TinhLuong.resources
+D:/doan 4/Baitap01/Baitap01/obj/Debug/chvlxd.csproj.GenerateResource.cache
+D:/doan 4/Baitap01/Baitap01/obj/Debug/chvlxd.csproj.CoreCompileInputs.cache
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.exe
+D:/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.pdb
+/Users/phamthuha/Documents/GitHub/cafe/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.exe
+/Users/phamthuha/Documents/GitHub/cafe/doan 4/Baitap01/Baitap01/obj/Debug/Baitap01.pdb

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,7 @@ namespace Baitap01
 {
     public partial class ChiTietCC : Form
     {
-        string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -72,7 +72,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select TenNV from QLNV where MaNV='" + manv + "'";
+            cmd.CommandText = "select TenNhanVien from NhanVien where MaNhanVien='" + manv + "'";
             adapter.SelectCommand = cmd;
             DataTable tab = new DataTable();
             tab.Clear();

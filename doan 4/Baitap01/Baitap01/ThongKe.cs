@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,7 @@ namespace Baitap01
 {
     public partial class ThongKe : Form
     {
-        string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         public ThongKe()
         {
@@ -95,30 +95,30 @@ namespace Baitap01
             {
                 if (ktrb==1)
                 {
-                    loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and NgayNhap like '%/"+cbthang.Text+"/"+txtnamt.Text+"%' group by ctpn.MaSP");
+                    loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where hdn.NgayNhap like '%/" + cbthang.Text + "/" + txtnamt.Text + "%' group by ctdn.MaNguyenLieu");
                 }
                 else if (ktrb==2)
                 {
                     if (cbquy.SelectedIndex.Equals(0))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/1/" + txtnamq.Text + "%' or NgayNhap like '%2/" + txtnamq.Text + "%' or NgayNhap like '%3/" + txtnamq.Text + "%') group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/1/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/2/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/3/" + txtnamq.Text + "%') group by ctdn.MaNguyenLieu");
                     }
                     else if (cbquy.SelectedIndex.Equals(1))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/4/" + txtnamq.Text + "%' or NgayNhap like '%5/" + txtnamq.Text + "%' or NgayNhap like '%6/" + txtnamq.Text + "%') group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/4/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/5/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/6/" + txtnamq.Text + "%') group by ctdn.MaNguyenLieu");
                     }
                     else if (cbquy.SelectedIndex.Equals(2))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/7/" + txtnamq.Text + "%' or NgayNhap like '%8/" + txtnamq.Text + "%' or NgayNhap like '%9/" + txtnamq.Text + "%') group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/7/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/8/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/9/" + txtnamq.Text + "%') group by ctdn.MaNguyenLieu");
                     }
                     else if (cbquy.SelectedIndex.Equals(3))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/10/" + txtnamq.Text + "%' or NgayNhap like '%11/" + txtnamq.Text + "%' or NgayNhap like '%12/" + txtnamq.Text + "%') group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/10/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/11/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/12/" + txtnamq.Text + "%') group by ctdn.MaNguyenLieu");
                     }
                 }
                 else if (ktrb==3)
                 {
-                    loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and NgayNhap like '%"+txtnamn.Text+"%' group by ctpn.MaSP");
+                    loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where hdn.NgayNhap like '%" + txtnamn.Text + "%' group by ctdn.MaNguyenLieu");
                 }
                 else
                 {
@@ -129,30 +129,30 @@ namespace Baitap01
             {
                 if (ktrb == 1)
                 {
-                    loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá' from CTHD,QLSP,QLHD where CTHD.MaSP = QLSP.MaSP and CTHD.MaHD = QLHD.MaHD and NgayLap like '%/" + cbthang.Text + "/" + txtnamt.Text + "%' group by CTHD.MaSP");
+                    loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where hdb.NgayLap like '%/" + cbthang.Text + "/" + txtnamt.Text + "%' group by ct.MaSanPham");
                 }
                 else if (ktrb == 2)
                 {
                     if (cbquy.SelectedIndex.Equals(0))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%1/" + txtnamq.Text + "%' or NgayLap like '%2/" + txtnamq.Text + "%' or NgayLap like '%3/" + txtnamq.Text + "%') group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%1/" + txtnamq.Text + "%' or hdb.NgayLap like '%2/" + txtnamq.Text + "%' or hdb.NgayLap like '%3/" + txtnamq.Text + "%') group by ct.MaSanPham");
                     }
                     else if (cbquy.SelectedIndex.Equals(1))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%4/" + txtnamq.Text + "%' or NgayLap like '%5/" + txtnamq.Text + "%' or NgayLap like '%6/" + txtnamq.Text + "%') group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%4/" + txtnamq.Text + "%' or hdb.NgayLap like '%5/" + txtnamq.Text + "%' or hdb.NgayLap like '%6/" + txtnamq.Text + "%') group by ct.MaSanPham");
                     }
                     else if (cbquy.SelectedIndex.Equals(2))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%7/" + txtnamq.Text + "%' or NgayLap like '%8/" + txtnamq.Text + "%' or NgayLap like '%9/" + txtnamq.Text + "%') group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%7/" + txtnamq.Text + "%' or hdb.NgayLap like '%8/" + txtnamq.Text + "%' or hdb.NgayLap like '%9/" + txtnamq.Text + "%') group by ct.MaSanPham");
                     }
                     else if (cbquy.SelectedIndex.Equals(3))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%10/" + txtnamq.Text + "%' or NgayLap like '%11/" + txtnamq.Text + "%' or NgayLap like '%12/" + txtnamq.Text + "%') group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%10/" + txtnamq.Text + "%' or hdb.NgayLap like '%11/" + txtnamq.Text + "%' or hdb.NgayLap like '%12/" + txtnamq.Text + "%') group by ct.MaSanPham");
                     }
                 }
                 else if (ktrb == 3)
                 {
-                    loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá' from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and NgayLap like '%/" + txtnamn.Text + "%' group by CTHD.MaSP");
+                    loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where hdb.NgayLap like '%/" + txtnamn.Text + "%' group by ct.MaSanPham");
                 }
                 else
                 {
@@ -171,30 +171,30 @@ namespace Baitap01
             {
                 if (ktrb == 1)
                 {
-                    loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and NgayNhap like '%/" + cbthang.Text + "/" + txtnamt.Text + "%' and CTPN.MaSP ='" + cbtimkiem.Text + "' group by ctpn.MaSP");
+                    loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where hdn.NgayNhap like '%/" + cbthang.Text + "/" + txtnamt.Text + "%' and ctdn.MaNguyenLieu ='" + cbtimkiem.Text + "' group by ctdn.MaNguyenLieu");
                 }
                 else if (ktrb == 2)
                 {
                     if (cbquy.SelectedIndex.Equals(0))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/1/" + txtnamq.Text + "%' or NgayNhap like '%2/" + txtnamq.Text + "%' or NgayNhap like '%3/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/1/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/2/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/3/" + txtnamq.Text + "%') and ctdn.MaNguyenLieu ='" + cbtimkiem.Text + "' group by ctdn.MaNguyenLieu");
                     }
                     else if (cbquy.SelectedIndex.Equals(1))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/4/" + txtnamq.Text + "%' or NgayNhap like '%5/" + txtnamq.Text + "%' or NgayNhap like '%6/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/4/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/5/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/6/" + txtnamq.Text + "%') and ctdn.MaNguyenLieu ='" + cbtimkiem.Text + "' group by ctdn.MaNguyenLieu");
                     }
                     else if (cbquy.SelectedIndex.Equals(2))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/7/" + txtnamq.Text + "%' or NgayNhap like '%8/" + txtnamq.Text + "%' or NgayNhap like '%9/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/7/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/8/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/9/" + txtnamq.Text + "%') and ctdn.MaNguyenLieu ='" + cbtimkiem.Text + "' group by ctdn.MaNguyenLieu");
                     }
                     else if (cbquy.SelectedIndex.Equals(3))
                     {
-                        loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and(NgayNhap like '%/10/" + txtnamq.Text + "%' or NgayNhap like '%11/" + txtnamq.Text + "%' or NgayNhap like '%12/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by ctpn.MaSP");
+                        loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where (hdn.NgayNhap like '%/10/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/11/" + txtnamq.Text + "%' or hdn.NgayNhap like '%/12/" + txtnamq.Text + "%') and ctdn.MaNguyenLieu ='" + cbtimkiem.Text + "' group by ctdn.MaNguyenLieu");
                     }
                 }
                 else if (ktrb == 3)
                 {
-                    loaddata("select ctpn.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(DonGia) as 'Đơn giá' from CTPN, QLSP,QLPN where CTPN.MaPN = QLPN.MaPN and CTPN.MaSP = QLSP.MaSP and NgayNhap like '%" + txtnamn.Text + "%' and CTPN.MaSP ='" + cbtimkiem.Text + "' group by ctpn.MaSP");
+                    loaddata("select ctdn.MaNguyenLieu as 'Mã sản phẩm', sum(ctdn.SoLuong) as 'Số lượng', sum(ctdn.ThanhTien) as 'Đơn giá' from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap where hdn.NgayNhap like '%" + txtnamn.Text + "%' and ctdn.MaNguyenLieu ='" + cbtimkiem.Text + "' group by ctdn.MaNguyenLieu");
                 }
                 else
                 {
@@ -205,30 +205,30 @@ namespace Baitap01
             {
                 if (ktrb == 1)
                 {
-                    loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá' from CTHD,QLSP,QLHD where CTHD.MaSP = QLSP.MaSP and CTHD.MaHD = QLHD.MaHD and NgayLap like '%/" + cbthang.Text + "/" + txtnamt.Text + "%' and CTPN.MaSP ='" + cbtimkiem.Text + "' group by CTHD.MaSP");
+                    loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where hdb.NgayLap like '%/" + cbthang.Text + "/" + txtnamt.Text + "%' and ct.MaSanPham ='" + cbtimkiem.Text + "' group by ct.MaSanPham");
                 }
                 else if (ktrb == 2)
                 {
                     if (cbquy.SelectedIndex.Equals(0))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%1/" + txtnamq.Text + "%' or NgayLap like '%2/" + txtnamq.Text + "%' or NgayLap like '%3/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%1/" + txtnamq.Text + "%' or hdb.NgayLap like '%2/" + txtnamq.Text + "%' or hdb.NgayLap like '%3/" + txtnamq.Text + "%') and ct.MaSanPham ='" + cbtimkiem.Text + "' group by ct.MaSanPham");
                     }
                     else if (cbquy.SelectedIndex.Equals(1))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%4/" + txtnamq.Text + "%' or NgayLap like '%5/" + txtnamq.Text + "%' or NgayLap like '%6/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%4/" + txtnamq.Text + "%' or hdb.NgayLap like '%5/" + txtnamq.Text + "%' or hdb.NgayLap like '%6/" + txtnamq.Text + "%') and ct.MaSanPham ='" + cbtimkiem.Text + "' group by ct.MaSanPham");
                     }
                     else if (cbquy.SelectedIndex.Equals(2))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%7/" + txtnamq.Text + "%' or NgayLap like '%8/" + txtnamq.Text + "%' or NgayLap like '%9/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%7/" + txtnamq.Text + "%' or hdb.NgayLap like '%8/" + txtnamq.Text + "%' or hdb.NgayLap like '%9/" + txtnamq.Text + "%') and ct.MaSanPham ='" + cbtimkiem.Text + "' group by ct.MaSanPham");
                     }
                     else if (cbquy.SelectedIndex.Equals(3))
                     {
-                        loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá'  from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and (NgayLap like '%10/" + txtnamq.Text + "%' or NgayLap like '%11/" + txtnamq.Text + "%' or NgayLap like '%12/" + txtnamq.Text + "%') and CTPN.MaSP ='" + cbtimkiem.Text + "' group by CTHD.MaSP");
+                        loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where (hdb.NgayLap like '%10/" + txtnamq.Text + "%' or hdb.NgayLap like '%11/" + txtnamq.Text + "%' or hdb.NgayLap like '%12/" + txtnamq.Text + "%') and ct.MaSanPham ='" + cbtimkiem.Text + "' group by ct.MaSanPham");
                     }
                 }
                 else if (ktrb == 3)
                 {
-                    loaddata("select CTHD.MaSP as 'Mã sản phẩm',sum(soluong) as 'Số lượng',sum(CTHD.SoLuong*QLSP.Gia) as 'Đơn giá' from CTHD,QLSP,QLHD where CTHD.MaSP=QLSP.MaSP and CTHD.MaHD=QLHD.MaHD and NgayLap like '%/" + txtnamn.Text + "%' and CTPN.MaSP ='" + cbtimkiem.Text + "' group by CTHD.MaSP");
+                    loaddata("select ct.MaSanPham as 'Mã sản phẩm', sum(ct.SoLuong) as 'Số lượng', sum(ct.ThanhTien) as 'Đơn giá' from ChiTietHoaDonBan ct join SanPham sp on ct.MaSanPham = sp.MaSanPham join HoaDonBan hdb on ct.MaHoaDonBan = hdb.MaHoaDonBan where hdb.NgayLap like '%/" + txtnamn.Text + "%' and ct.MaSanPham ='" + cbtimkiem.Text + "' group by ct.MaSanPham");
                 }
                 else
                 {
@@ -255,9 +255,23 @@ namespace Baitap01
 
         private void ThongKe_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'chvlxdDBDataSet.QLSP' table. You can move, or remove it, as needed.
-            this.qLSPTableAdapter.Fill(this.chvlxdDBDataSet.QLSP);
-
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(strcon))
+                {
+                    // For searching, we load product IDs from SanPham
+                    SqlDataAdapter da = new SqlDataAdapter("select MaSanPham from SanPham", conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    cbtimkiem.DataSource = dt;
+                    cbtimkiem.DisplayMember = "MaSanPham";
+                    cbtimkiem.ValueMember = "MaSanPham";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnthoat_Click(object sender, EventArgs e)

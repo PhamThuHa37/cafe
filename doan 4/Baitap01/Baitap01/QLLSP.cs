@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +12,7 @@ namespace Baitap01
 {
     public partial class QLLSP : Form
     {
-        string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -22,7 +22,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select * from QLLoaiSP";
+            cmd.CommandText = "select MaLoaiSanPham as MaLSP, TenLoaiSanPham as TenLSP from LoaiSanPham";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -41,7 +41,7 @@ namespace Baitap01
             {
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
-                string qr = "insert into QLLoaiSP values('" + txtmlsp.Text + "','" + txtlsp.Text + "')";
+                string qr = "insert into LoaiSanPham (MaLoaiSanPham, TenLoaiSanPham) values('" + txtmlsp.Text + "',N'" + txtlsp.Text + "')";
                 SqlCommand qrcmd = new SqlCommand(qr, sqlcon);
                 qrcmd.ExecuteNonQuery();
                 loaddata();
@@ -67,7 +67,7 @@ namespace Baitap01
             {
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
-                string sua = " update QLLoaiSP set TenLSP ='" + txtlsp.Text + "' where MaLSP='" + txtmlsp.Text + "'";
+                string sua = " update LoaiSanPham set TenLoaiSanPham =N'" + txtlsp.Text + "' where MaLoaiSanPham='" + txtmlsp.Text + "'";
                 SqlCommand cmdsua = new SqlCommand(sua, sqlcon);
                 cmdsua.ExecuteNonQuery();
                 loaddata();
@@ -92,7 +92,7 @@ namespace Baitap01
             {
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
-                string xoa = "delete from QLLoaiSP where MaLSP='" + txtmlsp.Text + "'";
+                string xoa = "delete from LoaiSanPham where MaLoaiSanPham='" + txtmlsp.Text + "'";
                 SqlCommand cmdxoa = new SqlCommand(xoa, sqlcon);
                 cmdxoa.ExecuteNonQuery();
                 loaddata();
@@ -115,7 +115,7 @@ namespace Baitap01
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
                 cmd = sqlcon.CreateCommand();
-                cmd.CommandText = "select * from QLLoaiSP";
+                cmd.CommandText = "select MaLoaiSanPham as MaLSP, TenLoaiSanPham as TenLSP from LoaiSanPham";
                 adapter.SelectCommand = cmd;
                 table.Clear();
                 adapter.Fill(table);
@@ -136,7 +136,7 @@ namespace Baitap01
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
                 cmd = sqlcon.CreateCommand();
-                cmd.CommandText = "select * from QLLoaiSP where Tenlsp like '%"+txttk.Text+"%'";
+                cmd.CommandText = "select MaLoaiSanPham as MaLSP, TenLoaiSanPham as TenLSP from LoaiSanPham where TenLoaiSanPham like '%"+txttk.Text+"%'";
                 adapter.SelectCommand = cmd;
                 table.Clear();
                 adapter.Fill(table);

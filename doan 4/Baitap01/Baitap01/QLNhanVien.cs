@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,10 +22,9 @@ namespace Baitap01
         {
 
             SqlConnection conn = new SqlConnection
-         (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+         (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
-            string sql = "SELECT *"
-                            + "FROM QLNV";
+            string sql = "SELECT MaNhanVien AS MaNV, TenNhanVien AS TenNV, DiaChi AS GT, SoDienthoai AS SDT, MaChucVu AS MaCV FROM NhanVien";
 
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);  // adapter : chuyển đổi
             DataSet ds = new DataSet();                 // bộ
@@ -44,11 +43,9 @@ namespace Baitap01
         private void button4_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-(@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
-            string sql = ("SELECT * "
-                           + "FROM QLNV" + " WHERE TenNV  LIKE '%"
-                       + txtTim.Text + "%'");
+            string sql = ("SELECT MaNhanVien AS MaNV, TenNhanVien AS TenNV, DiaChi AS GT, SoDienthoai AS SDT, MaChucVu AS MaCV FROM NhanVien WHERE TenNhanVien LIKE '%" + txtTim.Text + "%'");
 
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
@@ -60,14 +57,14 @@ namespace Baitap01
         {
             try
             {
-                SqlConnection conn = new SqlConnection(@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
-                SqlCommand cmd = new SqlCommand(" insert into QLNV (MaNV, TenNV,GT,SDT,MaCV) values ( @ma, @ten, @gioitinh, @sdt,@mcv)", conn);
+                SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+                SqlCommand cmd = new SqlCommand(" insert into NhanVien (MaNhanVien, TenNhanVien, DiaChi, SoDienthoai, MaChucVu, MaBangLuong) values ( @ma, @ten, @gioitinh, @sdt, @mcv, 'BL04')", conn);
                 conn.Open();
                 cmd.Parameters.AddWithValue("@ma", textBox1.Text);
                 cmd.Parameters.AddWithValue("@ten", textBox2.Text);
                 cmd.Parameters.AddWithValue("@gioitinh", textBox3.Text);
                 cmd.Parameters.AddWithValue("@sdt", textBox4.Text);
-                cmd.Parameters.AddWithValue("@mcv", textBox5.Text);
+                cmd.Parameters.AddWithValue("@mcv", textBox5.SelectedValue != null ? textBox5.SelectedValue.ToString() : textBox5.Text);
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 MessageBox.Show("thêm nhân viên thành công");
@@ -80,8 +77,8 @@ namespace Baitap01
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("DELETE FROM QLNV WHERE MaNV=@manv", conn);
+            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("DELETE FROM NhanVien WHERE MaNhanVien=@manv", conn);
             conn.Open();
             cmd.Parameters.AddWithValue("@manv", textBox1.Text);
             cmd.ExecuteNonQuery();
@@ -108,14 +105,14 @@ namespace Baitap01
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
             conn.Open();
-            SqlCommand cmd = new SqlCommand(" UPDATE QLNV set TenNV=@ten, GT=@gt,SDT=@sdt , MaCV=@mcv WHERE  MaNV=@ma", conn);
+            SqlCommand cmd = new SqlCommand(" UPDATE NhanVien set TenNhanVien=@ten, DiaChi=@gt, SoDienthoai=@sdt , MaChucVu=@mcv WHERE MaNhanVien=@ma", conn);
             cmd.Parameters.AddWithValue("@ma", textBox1.Text);
             cmd.Parameters.AddWithValue("@ten", textBox2.Text);
             cmd.Parameters.AddWithValue("@gt", textBox3.Text);
             cmd.Parameters.AddWithValue("@sdt", textBox4.Text);
-            cmd.Parameters.AddWithValue("@mcv", textBox5.Text);
+            cmd.Parameters.AddWithValue("@mcv", textBox5.SelectedValue != null ? textBox5.SelectedValue.ToString() : textBox5.Text);
             cmd.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("đã sửa thông tin nhân viên thành công");
@@ -136,9 +133,22 @@ namespace Baitap01
 
         private void QLNhanVien_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'chvlxdDBDataSet.QLCV' table. You can move, or remove it, as needed.
-             this.qLCVTableAdapter.Fill(this.chvlxdDBDataSet.QLCV);
-        
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True"))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SELECT MaChucVu AS MaCV, TenChucVu AS TenCV FROM ChucVu", conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    textBox5.DataSource = dt;
+                    textBox5.DisplayMember = "MaCV";
+                    textBox5.ValueMember = "MaCV";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void textBox5_SelectedIndexChanged(object sender, EventArgs e)

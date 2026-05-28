@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +12,7 @@ namespace Baitap01
 {
     public partial class ChiTietPN : Form
     {
-        string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -24,8 +24,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select CTPN.MaSP,TenSP,CTPN.MaNCC,TenNCC,SoLuong,(SoLuong*QLSP.Gia) as DonGia " +
-                "from CTPN, QLSP, QLNCC where QLSP.MaSP = CTPN.MaSP and CTPN.MaNCC = QLNCC.MaNCC and MaPN='"+mapn+ "' ";
+            cmd.CommandText = "select ctdn.MaNguyenLieu as MaSP, nl.TenNguyenLieu as TenSP, hdn.MaNhaCungCap as MaNCC, ncc.TenNhaCungCap as TenNCC, ctdn.SoLuong, ctdn.ThanhTien as DonGia from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap join NhaCungCap ncc on hdn.MaNhaCungCap = ncc.MaNhaCungCap where ctdn.MaHoaDonNhap = '" + mapn + "'";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -43,7 +42,7 @@ namespace Baitap01
         {
             try
             {
-                DBConnect.updateData(" update QLPN set TongTien='" + tt + "' where MaPN='" + mpn.Text + "'");
+                DBConnect.updateData(" update HoaDonNhap set TongTienNhap=" + tt + " where MaHoaDonNhap='" + mpn.Text + "'");
                 loaddata();
             }
             catch (Exception ex)
@@ -66,11 +65,11 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select (Gia*"+sl.Text+") as TTien from QLSP where MaSP='"+msp.SelectedValue.ToString() + "'";
+            cmd.CommandText = "select (GiaNhap*" + sl.Text + ") as TTien from NguyenLieu where MaNguyenLieu='" + msp.SelectedValue.ToString() + "'";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
-            double t= table.Rows[0].Field<double>(0);
+            double t = Convert.ToDouble(table.Rows[0][0]);
             return t;
         }
         private void button1_Click(object sender, EventArgs e)
@@ -78,7 +77,7 @@ namespace Baitap01
             try
             {
                 double t = tinh();
-                DBConnect.updateData("insert into CTPN values('" + mpn.Text + "','" + msp.SelectedValue.ToString() + "','" + mncc.SelectedValue.ToString()  + "','" + sl.Text + "','" + t + "')");
+                DBConnect.updateData("insert into ChiTietHoaDonNhap (MaHoaDonNhap, MaNguyenLieu, SoLuong, DonGia, ThanhTien) values('" + mpn.Text + "','" + msp.SelectedValue.ToString() + "', " + sl.Text + ", (select GiaNhap from NguyenLieu where MaNguyenLieu='" + msp.SelectedValue.ToString() + "'), " + t + ")");
                 loaddata();
                 uptt();
                 dg.Text = t.ToString();
@@ -99,7 +98,7 @@ namespace Baitap01
             try
             {
                 double t = tinh();
-                DBConnect.updateData(" update CTPN set masp ='" + msp.SelectedValue.ToString() + "',mancc='" + mncc.SelectedValue.ToString() + "',soluong='" + sl.Text + "',dongia='" + t + "' where MaPN='" + mpn.Text + "' and MaSP='"+msp.SelectedValue.ToString() + "' ");
+                DBConnect.updateData(" update ChiTietHoaDonNhap set SoLuong=" + sl.Text + ", DonGia=(select GiaNhap from NguyenLieu where MaNguyenLieu='" + msp.SelectedValue.ToString() + "'), ThanhTien=" + t + " where MaHoaDonNhap='" + mpn.Text + "' and MaNguyenLieu='" + msp.SelectedValue.ToString() + "'");
                 loaddata();
                 uptt();
                 dg.Text = t.ToString();
@@ -123,7 +122,7 @@ namespace Baitap01
         {
             try
             {
-                DBConnect.updateData("delete from CTPN where Mapn='" + mpn.Text + "' and MaSP='" + msp.SelectedValue.ToString() + "'");
+                DBConnect.updateData("delete from ChiTietHoaDonNhap where MaHoaDonNhap='" + mpn.Text + "' and MaNguyenLieu='" + msp.SelectedValue.ToString() + "'");
                 loaddata();
                 uptt();
                 rst();
@@ -152,8 +151,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select CTPN.MaSP,CTPN.MaNCC,TenSP,TenNCC,SoLuong,(SoLuong*QLSP.Gia) as DonGia " +
-                "from CTPN, QLSP, QLNCC where QLSP.MaSP = CTPN.MaSP and QLSP.MaNCC = QLNCC.MaNCC and MaPN='" + mapn + "' and CTPN.MaSP='" + timkiem.Text + "' ";
+            cmd.CommandText = "select ctdn.MaNguyenLieu as MaSP, nl.TenNguyenLieu as TenSP, hdn.MaNhaCungCap as MaNCC, ncc.TenNhaCungCap as TenNCC, ctdn.SoLuong, ctdn.ThanhTien as DonGia from ChiTietHoaDonNhap ctdn join NguyenLieu nl on ctdn.MaNguyenLieu = nl.MaNguyenLieu join HoaDonNhap hdn on ctdn.MaHoaDonNhap = hdn.MaHoaDonNhap join NhaCungCap ncc on hdn.MaNhaCungCap = ncc.MaNhaCungCap where ctdn.MaHoaDonNhap = '" + mapn + "' and ctdn.MaNguyenLieu='" + timkiem.Text + "'";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -163,11 +161,29 @@ namespace Baitap01
 
         private void ChiTietPN_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'chvlxdDBDataSet.QLSP' table. You can move, or remove it, as needed.
-            this.qLSPTableAdapter.Fill(this.chvlxdDBDataSet.QLSP);
-            // TODO: This line of code loads data into the 'chvlxdDBDataSet.QLNCC' table. You can move, or remove it, as needed.
-            this.qLNCCTableAdapter.Fill(this.chvlxdDBDataSet.QLNCC);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(strcon))
+                {
+                    SqlDataAdapter da1 = new SqlDataAdapter("select MaNguyenLieu, TenNguyenLieu from NguyenLieu", conn);
+                    DataTable dt1 = new DataTable();
+                    da1.Fill(dt1);
+                    msp.DataSource = dt1;
+                    msp.DisplayMember = "TenNguyenLieu";
+                    msp.ValueMember = "MaNguyenLieu";
 
+                    SqlDataAdapter da2 = new SqlDataAdapter("select MaNhaCungCap, TenNhaCungCap from NhaCungCap", conn);
+                    DataTable dt2 = new DataTable();
+                    da2.Fill(dt2);
+                    mncc.DataSource = dt2;
+                    mncc.DisplayMember = "TenNhaCungCap";
+                    mncc.ValueMember = "MaNhaCungCap";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

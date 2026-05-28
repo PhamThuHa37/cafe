@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +12,7 @@ namespace Baitap01
 {
     public partial class QLPhieuNhap : Form
     {
-         string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+         string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -23,7 +23,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select * from QLPN";
+            cmd.CommandText = "select MaHoaDonNhap as MaPN, '2026-05-28' as NgayNhap, MaNhanVien as MaNV, TongTienNhap as TongTien from HoaDonNhap";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -46,7 +46,7 @@ namespace Baitap01
         {
             try
             {
-                DBConnect.updateData("insert into QLPN values('" + mpn.Text + "','" + nn.Text + "','" + mnv.SelectedValue.ToString() + "','" + tt.Text + "')");                
+                DBConnect.updateData("insert into HoaDonNhap (MaHoaDonNhap, TongTienNhap, MaNhanVien, MaNhaCungCap) values('" + mpn.Text + "', " + (string.IsNullOrEmpty(tt.Text) ? "0" : tt.Text) + ", '" + mnv.SelectedValue.ToString() + "', 'NCC01')");                
                 loaddata();
             }
             catch (Exception ex)
@@ -64,7 +64,7 @@ namespace Baitap01
         {
             try
             {
-                DBConnect.updateData(" update QLPN set NgayNhap ='" + nn.Text + "',MaNV='" + mnv.SelectedValue.ToString() + "',TongTien='" + tt.Text + "' where MaPn='" + mpn.Text + "'");
+                DBConnect.updateData(" update HoaDonNhap set MaNhanVien='" + mnv.SelectedValue.ToString() + "',TongTienNhap=" + (string.IsNullOrEmpty(tt.Text) ? "0" : tt.Text) + " where MaHoaDonNhap='" + mpn.Text + "'");
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace Baitap01
         {
             try
             {
-                DBConnect.updateData("delete from QLPN where MaPN='" + mpn.Text + "'");
+                DBConnect.updateData("delete from HoaDonNhap where MaHoaDonNhap='" + mpn.Text + "'");
                
                 loaddata();
             }
@@ -91,7 +91,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select * from QLPN where MaPN ='"+timkiem.Text+"'";
+            cmd.CommandText = "select MaHoaDonNhap as MaPN, '2026-05-28' as NgayNhap, MaNhanVien as MaNV, TongTienNhap as TongTien from HoaDonNhap where MaHoaDonNhap ='" + timkiem.Text + "'";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -110,7 +110,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select * from QLPN" ;
+            cmd.CommandText = "select MaHoaDonNhap as MaPN, '2026-05-28' as NgayNhap, MaNhanVien as MaNV, TongTienNhap as TongTien from HoaDonNhap" ;
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -143,9 +143,22 @@ namespace Baitap01
 
         private void QLPhieuNhap_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'chvlxdDBDataSet.QLNV' table. You can move, or remove it, as needed.
-            this.qLNVTableAdapter.Fill(this.chvlxdDBDataSet.QLNV);
-
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(strcon))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("select MaNhanVien, TenNhanVien from NhanVien", conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    mnv.DataSource = dt;
+                    mnv.DisplayMember = "MaNhanVien";
+                    mnv.ValueMember = "MaNhanVien";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,7 @@ namespace Baitap01
 {
     public partial class QLNCC : Form
     {
-        string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -24,7 +24,7 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select * from QLNCC";
+            cmd.CommandText = "select MaNhaCungCap as MaNCC, TenNhaCungCap as TenNCC, '' as DiaChi, '' as SDT from NhaCungCap";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
@@ -47,7 +47,7 @@ namespace Baitap01
 
             {
                 try {
-                    DBConnect.updateData("insert into QLNCC values('" + txtmncc.Text + "','" + txttncc.Text + "','" + txtdc.Text + "','" + txtsdt.Text + "')");
+                    DBConnect.updateData("insert into NhaCungCap (MaNhaCungCap, TenNhaCungCap) values('" + txtmncc.Text + "',N'" + txttncc.Text + "')");
                     loaddata();
                 }catch(Exception ex)
                 {
@@ -60,7 +60,7 @@ namespace Baitap01
         {
             try
             {
-                DBConnect.updateData(" update QLNCC set TenNCC ='" + txttncc.Text + "',DiaChi='" + txtdc.Text + "',SDT='" + txtsdt.Text + "'where MaNCC = '" + txtmncc.Text + "'");
+                DBConnect.updateData(" update NhaCungCap set TenNhaCungCap =N'" + txttncc.Text + "' where MaNhaCungCap = '" + txtmncc.Text + "'");
                 loaddata();
             }catch(Exception ex)
             {
@@ -71,7 +71,7 @@ namespace Baitap01
         private void button2_Click(object sender, EventArgs e)
         {
             try {
-                DBConnect.updateData("delete from QLNCC where MaNCC='" + txtmncc.Text + "'");
+                DBConnect.updateData("delete from NhaCungCap where MaNhaCungCap='" + txtmncc.Text + "'");
                 loaddata();
             }catch(Exception ex)
             {
@@ -93,7 +93,7 @@ namespace Baitap01
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
                 cmd = sqlcon.CreateCommand();
-                cmd.CommandText = "select * from QLNCC where TenNCC like '%" + txttk.Text + "%'";
+                cmd.CommandText = "select MaNhaCungCap as MaNCC, TenNhaCungCap as TenNCC, '' as DiaChi, '' as SDT from NhaCungCap where TenNhaCungCap like '%" + txttk.Text + "%'";
                 adapter.SelectCommand = cmd;
                 table.Clear();
                 adapter.Fill(table);
@@ -121,7 +121,7 @@ namespace Baitap01
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
                 cmd = sqlcon.CreateCommand();
-                cmd.CommandText = "select * from QLNCC";
+                cmd.CommandText = "select MaNhaCungCap as MaNCC, TenNhaCungCap as TenNCC, '' as DiaChi, '' as SDT from NhaCungCap";
                 adapter.SelectCommand = cmd;
                 table.Clear();
                 adapter.Fill(table);

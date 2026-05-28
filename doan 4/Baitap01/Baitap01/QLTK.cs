@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,7 @@ namespace Baitap01
 {
     public partial class QLTK : Form
     {
-        string strcon = @"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True";
+        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -155,9 +155,22 @@ namespace Baitap01
 
         private void QLTK_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'chvlxdDBDataSet.QLNV' table. You can move, or remove it, as needed.
-            this.qLNVTableAdapter.Fill(this.chvlxdDBDataSet.QLNV);
-
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(strcon))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("select MaNhanVien, TenNhanVien from NhanVien", conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    cbmanv.DataSource = dt;
+                    cbmanv.DisplayMember = "MaNhanVien";
+                    cbmanv.ValueMember = "MaNhanVien";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

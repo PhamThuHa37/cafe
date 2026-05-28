@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,10 +24,9 @@ namespace Baitap01
         {
 
             SqlConnection conn = new SqlConnection
-         (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+         (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
-            string sql = "SELECT *"
-                            + "FROM QLKH";
+            string sql = "select MaKhachHang as MaKH, TenKhachHang as TenKH, '' as GT, SoDienThoai as SDT, cast(DiemTichLuy as nvarchar(50)) as DC from KhachHang";
 
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);  // adapter : chuyển đổi
             DataSet ds = new DataSet();                 // bộ
@@ -41,14 +40,15 @@ namespace Baitap01
             try
             {
                 SqlConnection conn = new SqlConnection
-          (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
-                SqlCommand cmd = new SqlCommand(" insert into QLKH (MaKH, TenKH,GT,SDT,DC) values ( @ma, @ten, @gioitinh, @sdt,@dc)", conn);
+          (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+                SqlCommand cmd = new SqlCommand(" insert into KhachHang (MaKhachHang, TenKhachHang, SoDienThoai, DiemTichLuy) values ( @ma, @ten, @sdt, @diem)", conn);
                 conn.Open();
                 cmd.Parameters.AddWithValue("@ma", textBox1.Text);
                 cmd.Parameters.AddWithValue("@ten", textBox2.Text);
-                cmd.Parameters.AddWithValue("@gioitinh", textBox9.Text);
                 cmd.Parameters.AddWithValue("@sdt", textBox3.Text);
-                cmd.Parameters.AddWithValue("@dc", textBox4.Text);
+                int diem = 0;
+                int.TryParse(textBox4.Text, out diem);
+                cmd.Parameters.AddWithValue("@diem", diem);
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 MessageBox.Show("thêm khách hàng thành công");
@@ -63,15 +63,16 @@ namespace Baitap01
         private void button2_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-    (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+     (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
             conn.Open();
-            SqlCommand cmd = new SqlCommand(" UPDATE QLKH set TenKH=@ten, GT=@gt,SDT=@sdt,DC=@dc WHERE  MaKH=@ma", conn);
+            SqlCommand cmd = new SqlCommand(" UPDATE KhachHang set TenKhachHang=@ten, SoDienThoai=@sdt, DiemTichLuy=@diem WHERE MaKhachHang=@ma", conn);
             cmd.Parameters.AddWithValue("@ma", textBox1.Text);
             cmd.Parameters.AddWithValue("@ten", textBox2.Text);
-            cmd.Parameters.AddWithValue("@gt", textBox9.Text);
             cmd.Parameters.AddWithValue("@sdt", textBox3.Text);
-            cmd.Parameters.AddWithValue("@dc", textBox4.Text);
+            int diem = 0;
+            int.TryParse(textBox4.Text, out diem);
+            cmd.Parameters.AddWithValue("@diem", diem);
             cmd.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("đã sửa thông tin khách hàng thành công");
@@ -81,11 +82,9 @@ namespace Baitap01
         private void button4_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-   (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
+   (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
-            string sql = ("SELECT * "
-                           + "FROM QLKH" + " WHERE TenKH  LIKE '%"
-                       + textBox5.Text + "%'");
+            string sql = ("select MaKhachHang as MaKH, TenKhachHang as TenKH, '' as GT, SoDienThoai as SDT, cast(DiemTichLuy as nvarchar(50)) as DC from KhachHang WHERE TenKhachHang LIKE '%" + textBox5.Text + "%'");
 
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
@@ -109,8 +108,8 @@ namespace Baitap01
         private void button3_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-    (@"Data Source=MACBOOK\SQLEXPRESS;Initial Catalog=chvlxdDataBase;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("DELETE FROM QLKH WHERE MaKH=@manv", conn);
+     (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("DELETE FROM KhachHang WHERE MaKhachHang=@manv", conn);
             conn.Open();
             cmd.Parameters.AddWithValue("@manv", textBox1.Text);
             cmd.ExecuteNonQuery();
