@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +15,7 @@ namespace Baitap01
         public QLNhanVien()
         {
             InitializeComponent();
+            Baitap01.ThemeManager.ApplyTheme(this);
             LoadData();
         }
 
@@ -22,7 +23,7 @@ namespace Baitap01
         {
 
             SqlConnection conn = new SqlConnection
-         (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+         (@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
             string sql = "SELECT MaNhanVien AS MaNV, TenNhanVien AS TenNV, DiaChi AS GT, SoDienthoai AS SDT, MaChucVu AS MaCV FROM NhanVien";
 
@@ -43,7 +44,7 @@ namespace Baitap01
         private void button4_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+(@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
             string sql = ("SELECT MaNhanVien AS MaNV, TenNhanVien AS TenNV, DiaChi AS GT, SoDienthoai AS SDT, MaChucVu AS MaCV FROM NhanVien WHERE TenNhanVien LIKE '%" + txtTim.Text + "%'");
 
@@ -57,7 +58,7 @@ namespace Baitap01
         {
             try
             {
-                SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+                SqlConnection conn = new SqlConnection(@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
                 SqlCommand cmd = new SqlCommand(" insert into NhanVien (MaNhanVien, TenNhanVien, DiaChi, SoDienthoai, MaChucVu, MaBangLuong) values ( @ma, @ten, @gioitinh, @sdt, @mcv, 'BL04')", conn);
                 conn.Open();
                 cmd.Parameters.AddWithValue("@ma", textBox1.Text);
@@ -77,7 +78,7 @@ namespace Baitap01
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
             SqlCommand cmd = new SqlCommand("DELETE FROM NhanVien WHERE MaNhanVien=@manv", conn);
             conn.Open();
             cmd.Parameters.AddWithValue("@manv", textBox1.Text);
@@ -105,7 +106,7 @@ namespace Baitap01
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
             conn.Open();
             SqlCommand cmd = new SqlCommand(" UPDATE NhanVien set TenNhanVien=@ten, DiaChi=@gt, SoDienthoai=@sdt , MaChucVu=@mcv WHERE MaNhanVien=@ma", conn);
             cmd.Parameters.AddWithValue("@ma", textBox1.Text);
@@ -135,7 +136,7 @@ namespace Baitap01
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True"))
+                using (SqlConnection conn = new SqlConnection(@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True"))
                 {
                     SqlDataAdapter da = new SqlDataAdapter("SELECT MaChucVu AS MaCV, TenChucVu AS TenCV FROM ChucVu", conn);
                     DataTable dt = new DataTable();

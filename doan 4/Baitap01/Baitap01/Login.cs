@@ -16,11 +16,23 @@ namespace Baitap01
         SqlCommand command;
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataTable table = new DataTable();
-        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
+        string strcon = @"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         public Login()
         {
             InitializeComponent();
+            Baitap01.ThemeManager.ApplyTheme(this);
+            
+            Button btnDangKy = new Button();
+            btnDangKy.Text = "Đăng ký";
+            btnDangKy.Location = new Point(125, 158);
+            btnDangKy.Size = new Size(100, 28);
+            btnDangKy.Click += (sender, e) => {
+                DangKy dk = new DangKy();
+                dk.Show();
+                this.Hide();
+            };
+            this.Controls.Add(btnDangKy);
         }
         public static string tk;
         public static string mk;

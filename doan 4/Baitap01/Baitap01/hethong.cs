@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,12 +15,51 @@ namespace Baitap01
         public hethong()
         {
             InitializeComponent();
-            if (q != 1)
+            Baitap01.ThemeManager.ApplyTheme(this);
+            if (q == 1)
             {
+                // Admin: Full access
+            }
+            else if (q == 2)
+            {
+                // Phuc vu: Tao don hang, xem trang thai, menu do uong
+                itemQLTK.Enabled = false;
+                itemQLNS.Enabled = false; // Nhan Su
+                itemNV.Enabled = false;
+                itemCV.Enabled = false;
+                itemQLMH.Enabled = false; // Mat Hang (San pham / LSP)
+                // itemSP.Enabled = false; // Phuc vu can xem san pham
+                // itemLSP.Enabled = false;
+                itemCC.Enabled = false; // Cham cong
+                quảnLýNhậpHàngToolStripMenuItem.Enabled = false;
+                itemNCC.Enabled = false;
+                itemPN.Enabled = false;
+                itemthongke.Enabled = false;
+            }
+            else if (q == 3)
+            {
+                // Thu ngan: Thanh toan, Menu do uong, Phieu thu chi
                 itemQLTK.Enabled = false;
                 itemQLNS.Enabled = false;
+                itemNV.Enabled = false;
+                itemCV.Enabled = false;
                 itemQLMH.Enabled = false;
+                itemCC.Enabled = false;
+                quảnLýNhậpHàngToolStripMenuItem.Enabled = false;
                 itemNCC.Enabled = false;
+                itemPN.Enabled = false;
+                itemthongke.Enabled = false;
+            }
+            else if (q == 4)
+            {
+                // Kho: Quan ly nguyen lieu, phieu nhap, ton kho
+                itemQLTK.Enabled = false;
+                itemQLNS.Enabled = false;
+                itemNV.Enabled = false;
+                itemCV.Enabled = false;
+                itemCC.Enabled = false;
+                quảnLýHoáĐơnToolStripMenuItem.Enabled = false; // Khong ban hang
+                itemKH.Enabled = false;
                 itemthongke.Enabled = false;
             }
         }

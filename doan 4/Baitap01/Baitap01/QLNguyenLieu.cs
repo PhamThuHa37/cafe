@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 namespace Baitap01
 {
-    public partial class QLLSP : Form
+    public partial class QLNguyenLieu : Form
     {
         string strcon = @"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
@@ -22,14 +22,14 @@ namespace Baitap01
             sqlcon = new SqlConnection(strcon);
             sqlcon.Open();
             cmd = sqlcon.CreateCommand();
-            cmd.CommandText = "select MaLoaiSanPham as MaLSP, TenLoaiSanPham as TenLSP from LoaiSanPham";
+            cmd.CommandText = "select MaNguyenLieu as MaLSP, TenNguyenLieu as TenLSP from NguyenLieu";
             adapter.SelectCommand = cmd;
             table.Clear();
             adapter.Fill(table);
             dataGridView1.DataSource = table;
             sqlcon.Close();
         }
-        public QLLSP()
+        public QLNguyenLieu()
         {
             InitializeComponent();
             Baitap01.ThemeManager.ApplyTheme(this);
@@ -42,7 +42,7 @@ namespace Baitap01
             {
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
-                string qr = "insert into LoaiSanPham (MaLoaiSanPham, TenLoaiSanPham) values('" + txtmlsp.Text + "',N'" + txtlsp.Text + "')";
+                string qr = "insert into NguyenLieu (MaNguyenLieu, TenNguyenLieu) values('" + txtmnl.Text + "',N'" + txttnl.Text + "')";
                 SqlCommand qrcmd = new SqlCommand(qr, sqlcon);
                 qrcmd.ExecuteNonQuery();
                 loaddata();
@@ -68,7 +68,7 @@ namespace Baitap01
             {
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
-                string sua = " update LoaiSanPham set TenLoaiSanPham =N'" + txtlsp.Text + "' where MaLoaiSanPham='" + txtmlsp.Text + "'";
+                string sua = " update NguyenLieu set TenNguyenLieu =N'" + txttnl.Text + "' where MaNguyenLieu='" + txtmnl.Text + "'";
                 SqlCommand cmdsua = new SqlCommand(sua, sqlcon);
                 cmdsua.ExecuteNonQuery();
                 loaddata();
@@ -82,9 +82,9 @@ namespace Baitap01
 
         private void dataGridView1_Click(object sender, EventArgs e)
         {
-            txtmlsp.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            txtlsp.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            txtmlsp.Enabled = false;
+            txtmnl.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            txttnl.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            txtmnl.Enabled = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace Baitap01
             {
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
-                string xoa = "delete from LoaiSanPham where MaLoaiSanPham='" + txtmlsp.Text + "'";
+                string xoa = "delete from NguyenLieu where MaNguyenLieu='" + txtmnl.Text + "'";
                 SqlCommand cmdxoa = new SqlCommand(xoa, sqlcon);
                 cmdxoa.ExecuteNonQuery();
                 loaddata();
@@ -109,14 +109,14 @@ namespace Baitap01
         {
             try
             {
-                txtlsp.ResetText();
-                txtmlsp.Enabled = true;
-                txtmlsp.ResetText();
+                txttnl.ResetText();
+                txtmnl.Enabled = true;
+                txtmnl.ResetText();
                 txttk.ResetText();
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
                 cmd = sqlcon.CreateCommand();
-                cmd.CommandText = "select MaLoaiSanPham as MaLSP, TenLoaiSanPham as TenLSP from LoaiSanPham";
+                cmd.CommandText = "select MaNguyenLieu as MaLSP, TenNguyenLieu as TenLSP from NguyenLieu";
                 adapter.SelectCommand = cmd;
                 table.Clear();
                 adapter.Fill(table);
@@ -137,7 +137,7 @@ namespace Baitap01
                 sqlcon = new SqlConnection(strcon);
                 sqlcon.Open();
                 cmd = sqlcon.CreateCommand();
-                cmd.CommandText = "select MaLoaiSanPham as MaLSP, TenLoaiSanPham as TenLSP from LoaiSanPham where TenLoaiSanPham like '%"+txttk.Text+"%'";
+                cmd.CommandText = "select MaNguyenLieu as MaLSP, TenNguyenLieu as TenLSP from NguyenLieu where TenNguyenLieu like '%"+txttk.Text+"%'";
                 adapter.SelectCommand = cmd;
                 table.Clear();
                 adapter.Fill(table);
@@ -150,7 +150,7 @@ namespace Baitap01
             }
         }
 
-        private void QLLSP_Load(object sender, EventArgs e)
+        private void QLNguyenLieu_Load(object sender, EventArgs e)
         {
 
         }

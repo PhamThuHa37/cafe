@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +15,7 @@ namespace Baitap01
         public ChucVu()
         {
             InitializeComponent();
+            Baitap01.ThemeManager.ApplyTheme(this);
             LoadData();
         }
 
@@ -22,7 +23,7 @@ namespace Baitap01
         {
 
             SqlConnection conn = new SqlConnection
-         (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+         (@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
             string sql = "SELECT MaChucVu AS MaCV, TenChucVu AS TenCV, 1.0 AS HSL FROM ChucVu";
 
@@ -35,7 +36,7 @@ namespace Baitap01
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
 
             string sql = ("SELECT MaChucVu AS MaCV, TenChucVu AS TenCV, 1.0 AS HSL FROM ChucVu WHERE TenChucVu LIKE '%" + textBox4.Text + "%'");
@@ -71,7 +72,7 @@ namespace Baitap01
         private void button1_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-   (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+   (@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
             SqlCommand cmd = new SqlCommand(" insert into ChucVu (MaChucVu, TenChucVu) values ( @mcv, @ten)", conn);
             conn.Open();
             cmd.Parameters.AddWithValue("@mcv", textBox1.Text);
@@ -85,7 +86,7 @@ namespace Baitap01
         private void button2_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
- (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+ (@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
             conn.Open();
             SqlCommand cmd = new SqlCommand(" UPDATE ChucVu set TenChucVu=@ten WHERE MaChucVu=@mcv", conn);
@@ -101,7 +102,7 @@ namespace Baitap01
         private void button3_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection
-  (@"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
+  (@"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True");
 
 
 

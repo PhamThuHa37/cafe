@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,7 @@ namespace Baitap01
 {
     public partial class CTHD : Form
     {
-        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
+        string strcon = @"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -21,6 +21,7 @@ namespace Baitap01
         public CTHD()
         {
             InitializeComponent();
+            Baitap01.ThemeManager.ApplyTheme(this);
             loaddata();
         }
         string mahd = QLHD.laymahd;

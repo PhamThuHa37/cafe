@@ -8,21 +8,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Baitap01
 {
     public partial class ThongKe : Form
     {
-        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
+        string strcon = @"Data Source=HUONGLT\SQLEXPRESS;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         SqlConnection sqlcon = null;
         public ThongKe()
         {
             InitializeComponent();
+            Baitap01.ThemeManager.ApplyTheme(this);
             txtnamt.Enabled = false;
             cbthang.Enabled = false;
             txtnamq.Enabled = false;
             cbquy.Enabled = false;
             txtnamn.Enabled = false;
+            
+            InitChart();
+        }
+        
+        Chart chart1;
+        void InitChart()
+        {
+            chart1 = new Chart();
+            chart1.Dock = DockStyle.Bottom;
+            chart1.Height = 200;
+            ChartArea ca = new ChartArea("MainArea");
+            chart1.ChartAreas.Add(ca);
+            Series s = new Series("Doanh Thu");
+            s.ChartType = SeriesChartType.Column;
+            s.IsValueShownAsLabel = true;
+            chart1.Series.Add(s);
+            this.Controls.Add(chart1);
         }
         void loaddata(string sql)
         {
@@ -39,9 +58,16 @@ namespace Baitap01
             dataGridView1.DataSource = table;
             sqlcon.Close();
             double tt = 0;
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            chart1.Series["Doanh Thu"].Points.Clear();
+            for (int i = 0; i < dataGridView1.RowCount - 1; i++) // RowCount -1 to avoid empty row if AllowUserToAddRows is true
             {
-                tt = tt + Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
+                if (dataGridView1.Rows[i].Cells[2].Value != null)
+                {
+                    double val = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
+                    tt = tt + val;
+                    string label = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    chart1.Series["Doanh Thu"].Points.AddXY(label, val);
+                }
             }
             txttt.Text = tt.ToString();
         }
