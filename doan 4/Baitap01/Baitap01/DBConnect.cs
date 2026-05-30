@@ -12,7 +12,7 @@ namespace Baitap01
     class DBConnect
     {
         static SqlConnection sqlcon;
-        static string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
+        public static string strcon = @"Data Source=.;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
         public static bool updateData(string sql)
         {
             sqlcon = new SqlConnection(strcon);

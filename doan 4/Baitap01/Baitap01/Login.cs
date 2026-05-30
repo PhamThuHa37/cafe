@@ -13,60 +13,162 @@ namespace Baitap01
 {
     public partial class Login : Form
     {
-        SqlCommand command;
-        SqlDataAdapter adapter = new SqlDataAdapter();
-        DataTable table = new DataTable();
-        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
-        SqlConnection sqlcon = null;
+        string strcon = DBConnect.strcon;
+        private LinkLabel lnkRegister;
+
         public Login()
         {
             InitializeComponent();
+            StyleForm(); // Áp dụng giao diện Coffee-shop Nâu Be sang trọng
         }
+
         public static string tk;
         public static string mk;
-        string qr;
         public static int pq;
         public static string nv;
-        private void getUSER()
+
+        // Định dạng giao diện tone Nâu - Be và thêm chức năng Đăng ký
+        private void StyleForm()
         {
-            sqlcon = new SqlConnection(strcon);
-            sqlcon.Open();
-            command = sqlcon.CreateCommand();
-            command.CommandText = "select VT,MaNV from QLTK where TK='"+txttk.Text+"'";
-            adapter.SelectCommand = command;
-            table.Clear();
-            adapter.Fill(table);
-            pq = table.Rows[0].Field<int>(0);
-            nv = table.Rows[0].Field<string>(1);
-            sqlcon.Close();
+            this.BackColor = Color.FromArgb(245, 240, 235); // Be sáng
+            this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            this.Size = new Size(380, 270);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+
+            // Title "ĐĂNG NHẬP"
+            label3.Text = "ĐĂNG NHẬP";
+            label3.ForeColor = Color.FromArgb(90, 65, 50); // Nâu Espresso
+            label3.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            label3.Location = new Point(0, 15);
+            label3.Size = new Size(360, 45);
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+
+            // Labels
+            label1.ForeColor = Color.FromArgb(100, 75, 60);
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label2.ForeColor = Color.FromArgb(100, 75, 60);
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+
+            // TextBoxes
+            txttk.BackColor = Color.FromArgb(252, 250, 248);
+            txttk.BorderStyle = BorderStyle.FixedSingle;
+            txttk.ForeColor = Color.FromArgb(60, 45, 35);
+            txtmk.BackColor = Color.FromArgb(252, 250, 248);
+            txtmk.BorderStyle = BorderStyle.FixedSingle;
+            txtmk.ForeColor = Color.FromArgb(60, 45, 35);
+
+            // Login Button
+            btnlogin.FlatStyle = FlatStyle.Flat;
+            btnlogin.FlatAppearance.BorderSize = 0;
+            btnlogin.BackColor = Color.FromArgb(120, 90, 70); // Nâu ấm
+            btnlogin.ForeColor = Color.White;
+            btnlogin.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnlogin.Cursor = Cursors.Hand;
+
+            // Exit Button
+            btnthoat.FlatStyle = FlatStyle.Flat;
+            btnthoat.FlatAppearance.BorderSize = 0;
+            btnthoat.BackColor = Color.FromArgb(185, 175, 165); // Be xám đậm
+            btnthoat.ForeColor = Color.White;
+            btnthoat.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnthoat.Cursor = Cursors.Hand;
+
+            // Programmatically add Register LinkLabel
+            lnkRegister = new LinkLabel();
+            lnkRegister.Text = "Chưa có tài khoản? Đăng ký ngay";
+            lnkRegister.Location = new Point(0, 195);
+            lnkRegister.Size = new Size(360, 25);
+            lnkRegister.TextAlign = ContentAlignment.MiddleCenter;
+            lnkRegister.LinkColor = Color.FromArgb(120, 90, 70);
+            lnkRegister.ActiveLinkColor = Color.FromArgb(90, 65, 50);
+            lnkRegister.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            lnkRegister.Cursor = Cursors.Hand;
+            lnkRegister.Click += new EventHandler(lnkRegister_Click);
+            this.Controls.Add(lnkRegister);
         }
+
+        private void lnkRegister_Click(object sender, EventArgs e)
+        {
+            RegisterForm reg = new RegisterForm();
+            reg.ShowDialog();
+        }
+
+        private void getUSER(string username)
+        {
+            try
+            {
+                using (SqlConnection sqlcon = new SqlConnection(strcon))
+                {
+                    string sql = "select VT, MaNV from QLTK where TK=@tk";
+                    using (SqlCommand command = new SqlCommand(sql, sqlcon))
+                    {
+                        command.Parameters.AddWithValue("@tk", username);
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+                            if (table.Rows.Count > 0)
+                            {
+                                pq = Convert.ToInt32(table.Rows[0][0]);
+                                nv = table.Rows[0][1]?.ToString() ?? "";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lấy thông tin phiên: " + ex.Message);
+            }
+        }
+
         private void btnlogin_Click(object sender, EventArgs e)
         {
-            if (txttk.Text == "" && txtmk.Text == "")
-                MessageBox.Show("Da nhap gi dau!");
-            else if (txttk.Text == "")
-                MessageBox.Show("Chua nhap tai khoan!");
-            else if (txtmk.Text == "")
-                MessageBox.Show("Chua nhap mat khau!");
+            string username = txttk.Text.Trim();
+            string password = txtmk.Text;
+
+            if (string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin đăng nhập!");
+            else if (string.IsNullOrEmpty(username))
+                MessageBox.Show("Chưa nhập tài khoản!");
+            else if (string.IsNullOrEmpty(password))
+                MessageBox.Show("Chưa nhập mật khẩu!");
             else
             {
-                sqlcon = new SqlConnection(strcon);
-                sqlcon.Open();
-                qr = "select * from QLTK where TK='" + txttk.Text + "' and MK='" + txtmk.Text + "'";
-                SqlCommand command = new SqlCommand(qr, sqlcon);
-                SqlDataReader dr = command.ExecuteReader();
-                if (dr.HasRows)
+                try
                 {
-                    getUSER();
-                    hethong ht = new hethong();
-                    ht.Show();
-                    tk = txttk.Text;
-                    mk = txtmk.Text;
-                    this.Hide();
+                    using (SqlConnection sqlcon = new SqlConnection(strcon))
+                    {
+                        sqlcon.Open();
+                        string qr = "select count(*) from QLTK where TK=@tk and MK=@mk";
+                        using (SqlCommand command = new SqlCommand(qr, sqlcon))
+                        {
+                            command.Parameters.AddWithValue("@tk", username);
+                            command.Parameters.AddWithValue("@mk", password);
+                            int count = (int)command.ExecuteScalar();
+
+                            if (count > 0)
+                            {
+                                getUSER(username);
+                                tk = username;
+                                mk = password;
+
+                                hethong ht = new hethong();
+                                ht.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
                 }
-                else
-                    MessageBox.Show("Tai khoan hoac mat khau khong chinh xac!");
-                sqlcon.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

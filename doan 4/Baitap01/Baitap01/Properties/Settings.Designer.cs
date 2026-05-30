@@ -26,8 +26,7 @@ namespace Baitap01.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-HT21K47P\\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security" +
-            "=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True")]
         public string chvlxdDBConnectionString {
             get {
                 return ((string)(this["chvlxdDBConnectionString"]));

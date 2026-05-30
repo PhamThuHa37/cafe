@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,22 +15,49 @@ namespace Baitap01
         public hethong()
         {
             InitializeComponent();
-            if (q != 1)
-            {
-                itemQLTK.Enabled = false;
-                itemQLNS.Enabled = false;
-                itemQLMH.Enabled = false;
-                itemNCC.Enabled = false;
-                itemthongke.Enabled = false;
-            }
+            ApplyRolePermissions();
         }
         int q = Login.pq;
         string nv = Login.nv;
+
+        private void ApplyRolePermissions()
+        {
+            // q: 1=Admin, 2=Pha chế, 3=Thu ngân, 4=Kho
+            if (q == 2) // Pha chế
+            {
+                itemQLTK.Visible = false;
+                itemQLNS.Visible = false;
+                itemQLMH.Visible = false;
+                quảnLýNhậpHàngToolStripMenuItem.Visible = false;
+                itemthongke.Visible = false;
+                quảnLýBànToolStripMenuItem.Visible = false;
+                quảnLýKhuyếnMạiToolStripMenuItem.Visible = false;
+                quảnLýKháchHàngToolStripMenuItem.Visible = false;
+            }
+            else if (q == 3) // Thu ngân
+            {
+                itemQLTK.Visible = false;
+                itemQLNS.Visible = false;
+                itemQLMH.Visible = false;
+                quảnLýNhậpHàngToolStripMenuItem.Visible = false;
+                itemthongke.Visible = false;
+                quảnLýKhuyếnMạiToolStripMenuItem.Visible = false;
+            }
+            else if (q == 4) // Kho
+            {
+                quảnLýHoáĐơnToolStripMenuItem.Visible = false;
+                itemQLTK.Visible = false;
+                itemQLNS.Visible = false;
+                itemQLMH.Visible = false;
+                itemthongke.Visible = false;
+                quảnLýBànToolStripMenuItem.Visible = false;
+                quảnLýKhuyếnMạiToolStripMenuItem.Visible = false;
+                quảnLýKháchHàngToolStripMenuItem.Visible = false;
+            }
+        }
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Login dn = new Login();
-            dn.Show();
-            this.Close();
+            Application.Exit();
         }
 
         private void quảnLýHoáĐơnToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,6 +145,20 @@ namespace Baitap01
         {
             ThongKe tk = new ThongKe();
             tk.Show();
+            this.Hide();
+        }
+
+        private void quảnLýBànToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuanLyBan qlb = new QuanLyBan();
+            qlb.Show();
+            this.Hide();
+        }
+
+        private void quảnLýKhuyếnMạiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuanLyKhuyenMai qlkm = new QuanLyKhuyenMai();
+            qlkm.Show();
             this.Hide();
         }
     }

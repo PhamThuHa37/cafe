@@ -40,7 +40,7 @@ namespace Baitap01
             // btnthoat
             // 
             this.btnthoat.Location = new System.Drawing.Point(875, 385);
-            this.btnthoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnthoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnthoat.Name = "btnthoat";
             this.btnthoat.Size = new System.Drawing.Size(100, 28);
             this.btnthoat.TabIndex = 6;
@@ -51,7 +51,7 @@ namespace Baitap01
             // btnkt
             // 
             this.btnkt.Location = new System.Drawing.Point(876, 181);
-            this.btnkt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnkt.Margin = new System.Windows.Forms.Padding(4);
             this.btnkt.Name = "btnkt";
             this.btnkt.Size = new System.Drawing.Size(100, 28);
             this.btnkt.TabIndex = 5;
@@ -62,7 +62,7 @@ namespace Baitap01
             // btncc
             // 
             this.btncc.Location = new System.Drawing.Point(875, 129);
-            this.btncc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btncc.Margin = new System.Windows.Forms.Padding(4);
             this.btncc.Name = "btncc";
             this.btncc.Size = new System.Drawing.Size(101, 28);
             this.btncc.TabIndex = 4;
@@ -74,11 +74,12 @@ namespace Baitap01
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(69, 129);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(739, 284);
             this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label1
             // 
@@ -101,7 +102,7 @@ namespace Baitap01
             this.Controls.Add(this.btnthoat);
             this.Controls.Add(this.btnkt);
             this.Controls.Add(this.btncc);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ChiTietCC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chi tiết chấm công";

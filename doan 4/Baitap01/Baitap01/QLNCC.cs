@@ -13,7 +13,7 @@ namespace Baitap01
 {
     public partial class QLNCC : Form
     {
-        string strcon = @"Data Source=LAPTOP-HT21K47P\PTG;Initial Catalog=QuanLyQuanCaFe;Integrated Security=True";
+        string strcon = DBConnect.strcon;
         SqlConnection sqlcon = null;
         SqlCommand cmd;
         SqlDataAdapter adapter = new SqlDataAdapter();

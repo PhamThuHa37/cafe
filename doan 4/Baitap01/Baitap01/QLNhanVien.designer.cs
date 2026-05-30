@@ -1,4 +1,4 @@
-﻿
+
 namespace Baitap01
 {
     partial class QLNhanVien
@@ -48,7 +48,7 @@ namespace Baitap01
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.data = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.txtTim = new System.Windows.Forms.TextBox();
@@ -56,7 +56,7 @@ namespace Baitap01
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qLCVBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chvlxdDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -97,15 +97,12 @@ namespace Baitap01
             // 
             // textBox5
             // 
-            this.textBox5.DataSource = this.qLCVBindingSource;
-            this.textBox5.DisplayMember = "MaCV";
             this.textBox5.FormattingEnabled = true;
             this.textBox5.Location = new System.Drawing.Point(171, 217);
             this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 24);
             this.textBox5.TabIndex = 33;
-            this.textBox5.ValueMember = "MaCV";
             this.textBox5.SelectedIndexChanged += new System.EventHandler(this.textBox5_SelectedIndexChanged);
             // 
             // qLCVBindingSource
@@ -131,7 +128,7 @@ namespace Baitap01
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(20, 220);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 17);
+            this.label5.Size = new System.Drawing.Size(76, 16);
             this.label5.TabIndex = 30;
             this.label5.Text = "Mã Chức vụ";
             // 
@@ -148,7 +145,7 @@ namespace Baitap01
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(23, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 17);
+            this.label1.Size = new System.Drawing.Size(89, 16);
             this.label1.TabIndex = 26;
             this.label1.Text = "Mã nhân viên ";
             // 
@@ -157,7 +154,7 @@ namespace Baitap01
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(23, 172);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 17);
+            this.label4.Size = new System.Drawing.Size(85, 16);
             this.label4.TabIndex = 29;
             this.label4.Text = "Số điện thoại";
             // 
@@ -193,7 +190,7 @@ namespace Baitap01
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(23, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 17);
+            this.label3.Size = new System.Drawing.Size(54, 16);
             this.label3.TabIndex = 28;
             this.label3.Text = "Giới tính";
             // 
@@ -213,7 +210,7 @@ namespace Baitap01
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(23, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 17);
+            this.label2.Size = new System.Drawing.Size(91, 16);
             this.label2.TabIndex = 27;
             this.label2.Text = "Tên nhân viên";
             // 
@@ -239,17 +236,18 @@ namespace Baitap01
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // dataGridView1
+            // data
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(384, 161);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(739, 350);
-            this.dataGridView1.TabIndex = 21;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.data.Location = new System.Drawing.Point(384, 161);
+            this.data.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.data.Name = "data";
+            this.data.RowHeadersWidth = 51;
+            this.data.RowTemplate.Height = 24;
+            this.data.Size = new System.Drawing.Size(739, 350);
+            this.data.TabIndex = 21;
+            this.data.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.data.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button4
             // 
@@ -293,7 +291,7 @@ namespace Baitap01
             this.Controls.Add(this.txtTim);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.data);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -305,7 +303,7 @@ namespace Baitap01
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qLCVBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chvlxdDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,7 +313,7 @@ namespace Baitap01
 
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView data;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label1;

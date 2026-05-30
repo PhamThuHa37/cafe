@@ -330,6 +330,7 @@ INSERT INTO SanPham VALUES ('SP06', N'Café Latte', 40000, 'latte.jpg', 'LSP02',
 INSERT INTO SanPham VALUES ('SP07', N'Trà sữa truyền thống', 35000, 'trasua.jpg', 'LSP04', 'CT07');
 INSERT INTO SanPham VALUES ('SP08', N'Ca cao nóng', 35000, 'cacaonong.jpg', 'LSP08', 'CT08');
 INSERT INTO SanPham VALUES ('SP09', N'Nước chanh đá', 25000, 'nuocchanh.jpg', 'LSP07', 'CT09');
+INSERT INTO SanPham VALUES ('SP10', N'Bánh mì thịt', 35000, 'banhmi.jpg', 'LSP10', NULL);
 
 
 -- 14. Insert ChiTietCongThuc
